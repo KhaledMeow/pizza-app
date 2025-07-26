@@ -1,0 +1,124 @@
+.pizza-container {
+    position: relative;
+    margin-bottom: 2rem;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-header {
+    background-color: #fff;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.order-now-button,
+.checkout-button {
+    background-color: #f4ce14;
+    color: #333;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-button {
+    background-color: #4caf50;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.order-now-button:hover {
+    background-color: #e6c413;
+    transform: translateY(-2px);
+}
+
+.checkout-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.quantity-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    padding: 1.2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.quantity-slider {
+    width: 100%;
+    max-width: 280px;
+    margin: 0.5rem 0;
+    height: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #e0e0e0;
+    border-radius: 3px;
+    outline: none;
+}
+
+.quantity-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #4caf50;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quantity-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #45a049;
+}
+
+.quantity-display {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 280px;
+    font-weight: 600;
+}
+
+.item-total {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .order-now-button,
+    .checkout-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
