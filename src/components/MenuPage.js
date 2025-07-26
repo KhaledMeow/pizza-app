@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { pizzaData } from '../data/pizzas';
 import Pizza from './Pizza';
 import { useNavigate } from 'react-router-dom';
-import './MenuPage.css';
+import '../Styles/MenuPage.css';
 
 function Header({ selectedPizzas, onCheckout, totalItems }) {
     const totalPrice = Object.entries(selectedPizzas).reduce((sum, [pizzaName, { quantity }]) => {
@@ -45,11 +45,26 @@ function MenuPage() {
     const [selectedPizzas, setSelectedPizzas] = useState({});
     const navigate = useNavigate();
 
-    const handleQuantityChange = (pizzaName, quantity) => {
+    const handleQuantityChange = (pizzaName, newQuantity) => {
+        const quantity = Math.max(0, Math.min(10, newQuantity)); // Ensure quantity is between 0 and 10
         setSelectedPizzas(prev => ({
             ...prev,
-            [pizzaName]: { quantity: parseInt(quantity) || 0 }
+            [pizzaName]: { quantity }
         }));
+    };
+
+    const handleIncrement = (pizzaName) => {
+        const currentQuantity = selectedPizzas[pizzaName]?.quantity || 0;
+        if (currentQuantity < 10) {
+            handleQuantityChange(pizzaName, currentQuantity + 1);
+        }
+    };
+
+    const handleDecrement = (pizzaName) => {
+        const currentQuantity = selectedPizzas[pizzaName]?.quantity || 0;
+        if (currentQuantity > 0) {
+            handleQuantityChange(pizzaName, currentQuantity - 1);
+        }
     };
 
     const handleCheckout = () => {
@@ -100,22 +115,38 @@ function MenuPage() {
                             />
                             {!pizza.soldOut && (
                                 <div className="quantity-selector">
-                                    <input 
-                                        type="range" 
-                                        min="0" 
-                                        max="10" 
-                                        value={selectedPizzas[pizza.name]?.quantity || 0}
-                                        onChange={(e) => handleQuantityChange(pizza.name, e.target.value)}
-                                        className="quantity-slider"
-                                    />
-                                    <div className="quantity-display">
-                                        <span>{selectedPizzas[pizza.name]?.quantity || 0} {selectedPizzas[pizza.name]?.quantity === 1 ? 'pizza' : 'pizzas'}</span>
-                                        {selectedPizzas[pizza.name]?.quantity > 0 && (
+                                    <div className="quantity-controls">
+                                        <button 
+                                            onClick={() => handleDecrement(pizza.name)}
+                                            className="quantity-button minus"
+                                            aria-label="Decrease quantity"
+                                        >
+                                            −
+                                        </button>
+                                        <div className="quantity-display">
+                                            <span className="quantity-number">
+                                                {selectedPizzas[pizza.name]?.quantity || 0}
+                                            </span>
+                                            <span className="quantity-label">
+                                                {selectedPizzas[pizza.name]?.quantity === 1 ? 'pizza' : 'pizzas'}
+                                            </span>
+                                        </div>
+                                        <button 
+                                            onClick={() => handleIncrement(pizza.name)}
+                                            className="quantity-button plus"
+                                            aria-label="Increase quantity"
+                                            disabled={(selectedPizzas[pizza.name]?.quantity || 0) >= 10}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                    {selectedPizzas[pizza.name]?.quantity > 0 && (
+                                        <div className="price-display">
                                             <span className="item-total">
                                                 ${(pizza.price * (selectedPizzas[pizza.name]?.quantity || 0)).toFixed(2)}
                                             </span>
-                                        )}
-                                    </div>
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </div>

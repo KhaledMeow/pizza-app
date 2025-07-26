@@ -26,17 +26,17 @@
 
 .order-now-button,
 .checkout-button {
-    background-color: #f4ce14;
-    color: #333;
+    background-color: #4caf50;
+    color: #000000;
     border: none;
     padding: 0.8rem 2rem;
     border-radius: 50px;
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 5px rgba(0, 0, 0, 0.5);
 }
 
 .checkout-button {
@@ -48,7 +48,7 @@
 }
 
 .order-now-button:hover {
-    background-color: #e6c413;
+    background-color: #fca53a;
     transform: translateY(-2px);
 }
 
@@ -61,7 +61,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
     margin-top: 1.5rem;
     padding: 1.2rem;
     background-color: #f9f9f9;
@@ -69,39 +69,68 @@
     transition: all 0.3s ease;
 }
 
-.quantity-slider {
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
     width: 100%;
-    max-width: 280px;
-    margin: 0.5rem 0;
-    height: 6px;
-    appearance: none;
-    -webkit-appearance: none;
-    background: #e0e0e0;
-    border-radius: 3px;
-    outline: none;
+    justify-content: center;
 }
 
-.quantity-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #4caf50;
+.quantity-button {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #4caf50;
+    background: white;
+    color: #4caf50;
     border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
+    line-height: 1;
+    padding: 0;
 }
 
-.quantity-slider::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-    background: #45a049;
+.quantity-button:hover:not(:disabled) {
+    background-color: #4caf50;
+    color: white;
+    transform: scale(1.1);
+}
+
+.quantity-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #cccccc;
+    color: #cccccc;
 }
 
 .quantity-display {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 280px;
-    font-weight: 600;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.quantity-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    line-height: 1;
+}
+
+.quantity-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.2rem;
+}
+
+.price-display {
+    margin-top: 0.5rem;
+    text-align: center;
 }
 
 .item-total {
