@@ -108,10 +108,13 @@ function MenuPage() {
                         <div key={pizza.name} className="pizza-container">
                             <Pizza 
                                 name={pizza.name} 
+                                description={pizza.description}
                                 ingredients={pizza.ingredients} 
                                 price={pizza.price} 
                                 photoName={pizza.photoName} 
-                                soldOut={pizza.soldOut} 
+                                soldOut={pizza.soldOut}
+                                cookingTime={pizza.cookingTime}
+                                calories={pizza.calories}
                             />
                             {!pizza.soldOut && (
                                 <div className="quantity-selector">
